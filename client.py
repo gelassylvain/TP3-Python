@@ -1,3 +1,4 @@
+from re import S
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
@@ -20,13 +21,29 @@ class MainWindow(QWidget):
     def initUI(self):
         self.setWindowTitle("Client")
         self.setFixedSize(400, 400)
-        self.label1 = QLabel("Enter your host IP:", self)
+
+        self.label1 = QLabel("Enter your Hostname:", self)
+        self.label1.move(10, 1)
         self.text = QLineEdit(self)
         self.text.move(10, 30)
+
+        self.label10 = QLabel("Enter your API key:", self)
+        self.label10.move(10, 80)
+        self.text1 = QLineEdit(self)
+        self.text1.move(10, 110)
+
+        self.label100 = QLabel("Enter your IP:", self)
+        self.label100.move(10, 150)
+        self.text10 = QLineEdit(self)
+        self.text10.move(10, 180)
+
+
+
+
         self.label2 = QLabel("Answer:", self)
-        self.label2.move(10, 60)
+        self.label2.move(10, 280)
         self.button = QPushButton("Send", self)
-        self.button.move(10, 90)
+        self.button.move(10, 220)
 
         self.button.clicked.connect(self.on_click)
         self.button.pressed.connect(self.on_click)
@@ -35,18 +52,20 @@ class MainWindow(QWidget):
 
     def on_click(self):
         hostname = self.text.text()
+        ip = self.text10.text()
+        api_key = self.text1.text()
 
         if hostname == "":
             QMessageBox.about(self, "Error", "Please fill the field")
         else:
-            res = self.__query(hostname)
+            res = self.__query(hostname,ip,api_key)
             if res:
                 self.label2.setText("Answer%s" % (res["Hello"]))
                 self.label2.adjustSize()
                 self.show()
 
-    def __query(self, hostname):
-        url = "http://%s" % (hostname)
+    def __query(self, hostname, ip, api_key):
+        url = "http://%s/ip/%s?key=%s" % (hostname,ip, api_key) 
         r = requests.get(url)
         if r.status_code == requests.codes.NOT_FOUND:
             QMessageBox.about(self, "Error", "IP not found")
