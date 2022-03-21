@@ -25,25 +25,25 @@ class MainWindow(QWidget):
         self.label1 = QLabel("Enter your Hostname:", self)
         self.label1.move(10, 1)
         self.text = QLineEdit(self)
-        self.text.move(10, 30)
+        self.text.move(10, 20)
 
         self.label10 = QLabel("Enter your API key:", self)
-        self.label10.move(10, 80)
+        self.label10.move(10, 60)
         self.text1 = QLineEdit(self)
-        self.text1.move(10, 110)
+        self.text1.move(10, 80)
 
         self.label100 = QLabel("Enter your IP:", self)
-        self.label100.move(10, 150)
+        self.label100.move(10, 120)
         self.text10 = QLineEdit(self)
-        self.text10.move(10, 180)
+        self.text10.move(10, 140)
 
 
 
 
         self.label2 = QLabel("Answer:", self)
-        self.label2.move(10, 280)
+        self.label2.move(10, 230)
         self.button = QPushButton("Send", self)
-        self.button.move(10, 220)
+        self.button.move(10, 190)
 
         self.button.clicked.connect(self.on_click)
         self.button.pressed.connect(self.on_click)
