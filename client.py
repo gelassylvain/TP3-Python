@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.Qt import QUrl, QDesktopServices
 import requests
 import sys
+import webbrowser
 
 
 class MainWindow(QWidget):
@@ -64,6 +65,9 @@ class MainWindow(QWidget):
                 self.label2.setText("\n \n Longitude: %s \n Latitude: %s \n" % (res["Longitude"], res["Latitude"]))
                 self.label2.adjustSize()
                 self.show()
+                url2 = "https://www.openstreetmap.org/?mlat=%s&mlon=%s#map=12" % (res["Latitude"], res["Longitude"])
+                webbrowser.open_new_tab(url2)
+
 
     def __query(self, hostname, ip, api_key):
         url = "http://%s/ip/%s?key=%s" % (hostname,ip, api_key) 
