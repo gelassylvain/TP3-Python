@@ -59,8 +59,9 @@ class MainWindow(QWidget):
             QMessageBox.about(self, "Error", "Please fill the field")
         else:
             res = self.__query(hostname,ip,api_key)
+            
             if res:
-                self.label2.setText("Answer%s" % (res))
+                self.label2.setText("\n \n Longitude: %s \n Latitude: %s \n" % (res["Longitude"], res["Latitude"]))
                 self.label2.adjustSize()
                 self.show()
 
