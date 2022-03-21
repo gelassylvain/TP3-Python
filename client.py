@@ -60,7 +60,7 @@ class MainWindow(QWidget):
         else:
             res = self.__query(hostname,ip,api_key)
             if res:
-                self.label2.setText("Answer%s" % (res["Hello"]))
+                self.label2.setText("Answer%s" % (res))
                 self.label2.adjustSize()
                 self.show()
 
